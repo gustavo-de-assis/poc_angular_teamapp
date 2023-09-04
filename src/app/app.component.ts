@@ -22,6 +22,7 @@ export class AppComponent {
       this.errorMessage = "Nome não pode ser vazio!";
       return;
     }
+
     this.nameArray.push(this.currentName);
     this.currentName = "";
     this.errorMessage = "";
@@ -40,21 +41,25 @@ export class AppComponent {
       this.errorMessage = "Não há nomes o suficiente!";
       return;
     }
-    this.nameArray.sort();
+    this.teams = [];
 
-    let exceededMembers = this.nameArray.length % this.numTeams;
-    this.teamLength = (this.nameArray.length - exceededMembers) / this.numTeams;
+    const names = [...this.nameArray];
+
+    names.sort(() => Math.random() - 0.5);
+
+    let exceededMembers = names.length % this.numTeams;
+    this.teamLength = (names.length - exceededMembers) / this.numTeams;
 
     for (let i = 0; i < this.numTeams; i++) {
       let newTeam: Team = { value: i + 1, names: [] };
 
       for (let j = 0; j < this.teamLength; j++) {
-        newTeam.names.push(this.nameArray[0]);
-        this.nameArray.shift();
+        newTeam.names.push(names[0]);
+        names.shift();
       }
       if (exceededMembers) {
-        newTeam.names.push(this.nameArray[0]);
-        this.nameArray.shift();
+        newTeam.names.push(names[0]);
+        names.shift();
         exceededMembers -= 1;
       }
       this.teams.push(newTeam);
