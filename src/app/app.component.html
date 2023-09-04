@@ -39,6 +39,15 @@
       </button>
     </div>
 
+    <div class="w-full">
+      <button 
+        class="border-2 h-8 p-2 rounded bg-purple-950 text-white w-full mt-4"
+        (click)="(clearData())"
+        >
+          Clear
+      </button>
+    </div>
+
     <p *ngIf="errorMessage" class="text-red-500 mt-5">{{errorMessage}}</p>
   </div>
   <div *ngIf="teams.length > 0" class="w-[500px] p-6 border-2 rounded-lg bg-slate-50 border-gray-600 mt-5">

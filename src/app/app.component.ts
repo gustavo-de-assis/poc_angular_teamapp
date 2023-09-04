@@ -33,7 +33,23 @@ export class AppComponent {
   }
 
   inputNumTeams(qtd: string) {
+    if (Number(qtd) < 0) {
+      this.errorMessage = "Favor, entrar com um valor positivo!";
+      return;
+    }
+    if (isNaN(Number(qtd))) {
+      this.errorMessage = "Apenas números são permitidos!";
+      return;
+    }
     this.numTeams = Number(qtd);
+    this.errorMessage = "";
+  }
+
+  clearData() {
+    this.nameArray = [];
+    this.teamLength = 0;
+    this.numTeams = 0;
+    this.teams = [];
   }
 
   generateTeams() {
